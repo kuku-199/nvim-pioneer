@@ -1,0 +1,11 @@
+# Ignore plugin downloads / 忽略插件下载
+
+lazy-lock.json
+
+/lazy
+
+# Ignore temporary files / 忽略临时文件
+
+*.log
+
+.DS_Store
