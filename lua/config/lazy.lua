@@ -1,8 +1,13 @@
 -- lua/config/lazy.lua
 -- Bootstrap lazy.nvim (Plugin Manager)
 -- 自动安装插件管理器 lazy.nvim
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+
+-- Check if file exists
+-- 检查文件是否存在
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  print("⬇️  Cloning lazy.nvim plugin manager...")
   vim.fn.system({
     "git",
     "clone",
@@ -14,7 +19,31 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+-- Robust Error Handling
+-- 错误捕获：防止因网络问题下载失败导致的报错
+local status_ok, lazy = pcall(require, "lazy")
+if not status_ok then
+    -- Normalize path for Windows display. 
+    -- We use string.char(92) for backslash to avoid JS regex parsing errors.
+    local display_path = lazypath:gsub("/", string.char(92))
+
+    print(" ")
+    print("❌ Error: lazy.nvim module not found!")
+    print("---------------------------------------------------")
+    print("⚠️  Network Issue Detected / 检测到网络问题")
+    print("Git clone failed to download the plugin manager.")
+    print("Git 下载失败，通常是因为 GitHub 连接不稳定。")
+    print(" ")
+    print("👉 Solution / 解决方法:")
+    print("Run this command in your terminal manually:")
+    print("请在终端手动运行以下命令尝试下载：")
+    print(" ")
+    print("git clone https://github.com/folke/lazy.nvim.git " .. display_path)
+    print(" ")
+    return
+end
+
+lazy.setup({
   -- 1. UI Plugins / 界面插件
   { 
       "nvim-lualine/lualine.nvim", 
