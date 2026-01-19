@@ -15,16 +15,24 @@
 
 **Nvim Pioneer** 专为初学者打造的模块化 Neovim 配置。注重性能与教学，代码注释详细，无需折腾即可获得顶级的开发体验。
 
+## ⚠️ 常见报错解决 (安全模式)
+
+如果遇到 `module 'nvim-treesitter.configs' not found` 崩溃循环：
+1. **不要慌。** 本配置已启用 **安全模式**（默认关闭自动下载），防止坏死。
+2. 请重新运行 **安装脚本**，并在询问 "Clear Cache" (清理缓存) 时选 **Yes**。
+3. 或者手动删除缓存：`rm -rf ~/.local/share/nvim` (Linux/Mac) 或 删除 `%LOCALAPPDATA%\nvim-data` (Windows)。
+4. 进入 Neovim 后，手动安装需要的语言：`:TSInstall c`, `:TSInstall lua`。
+
 ## ✨ 核心特性
 
 | 特性 | 说明 |
 | :--- | :--- |
-| 📦 **Lazy.nvim** | 最快的现代插件管理器。 |
+| 📦 **模块化插件** | 插件按 UI、编辑器、代码、嵌入式、工具 分类管理。 |
 | 🧠 **LSP 零配置** | 自动安装 Python, Lua, C++, JS/TS, Rust 等语言服务。 |
 | 🎨 **智能主题** | 切换主题后会自动**记忆**，下次启动保持原样。 |
-| 📊 **系统监控** | 状态栏实时显示 **CPU/RAM** 占用率。 |
-| 🔍 **Telescope** | 强大的模糊搜索，找文件、搜代码只需一瞬间。 |
-| 🛠️ **智能安装** | 脚本会自动检测环境，只安装缺失的工具。 |
+| 🤖 **嵌入式开发** | **新增:** 预装调试 (DAP), CMake 工具链。 |
+| 🪟 **通用快捷键** | **新增:** 输入 `:ToggleShortcuts` 一键开启 Ctrl+C/V/Z/A。 |
+| 🛠️ **安全安装** | 脚本会检测旧配置，并在**覆盖前询问你**。 |
 
 ---
 
@@ -53,27 +61,25 @@ powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 
 ## 🚀 安装步骤
 
-1.  **备份旧配置** (如果有):
+1.  **克隆仓库**:
     ```bash
-    mv ~/.config/nvim ~/.config/nvim.bak
-    mv ~/.local/share/nvim ~/.local/share/nvim.bak
+    git clone https://github.com/kuku-199/nvim-pioneer.git
+    cd nvim-pioneer
     ```
 
-2.  **克隆仓库**:
-    ```bash
-    git clone https://github.com/kuku-199/nvim-pioneer.git ~/.config/nvim
-    ```
-    *(Windows 用户请将路径改为 `~/AppData/Local/nvim`)*
+2.  **运行安装**:
+    运行上方的脚本。脚本非常安全，如果发现你电脑里已经有 nvim 配置，它会先问你，经你同意后才会备份并覆盖。
 
 3.  **启动 Neovim**:
     ```bash
     nvim
     ```
-    *首次启动会自动下载插件，请耐心等待所有进度条跑完，然后重启即可。*
 
 ---
 
 ## 🎹 常用快捷键
+
+> **完整列表：** 请查看 [keybindings_CN.md](keybindings_CN.md) 获取所有快捷键的详细说明。
 
 | 按键 | 动作 | 说明 |
 | :--- | :--- | :--- |
@@ -81,5 +87,4 @@ powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 | `<Space> e` | 开关文件树 | 打开侧边文件栏 |
 | `<Space> ff` | 查找文件 | 模糊搜索文件名 |
 | `<Space> th` | 切换主题 | 切换并**自动保存**主题 |
-| `<Space> tm` | 系统监控 | 开启/关闭状态栏硬件监控 |
-| `gd` | 跳转定义 | 跳转到函数/变量定义处 |
+| `:ToggleShortcuts` | 通用模式 | 开关 Ctrl+C/V/A 等快捷键 |

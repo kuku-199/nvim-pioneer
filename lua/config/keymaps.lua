@@ -30,7 +30,8 @@ keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts) -- Prev Tab / 上一个
 keymap("n", "<leader>x", ":bdelete<CR>", { desc = "Close Buffer / 关闭当前标签" })
 
 -- --- Terminal (ToggleTerm) / 终端开关 ---
-keymap("n", [[<C->]], ":ToggleTerm<CR>", { desc = "Toggle Terminal / 开关浮动终端" })
+-- Note: Using string.char or raw strings can avoid confusing the JS parser
+keymap("n", [[<C-\>]], ":ToggleTerm<CR>", { desc = "Toggle Terminal / 开关浮动终端" })
 
 -- --- Theme Switcher / 主题切换 ---
 keymap("n", "<leader>th", ":SwitchTheme<CR>", { desc = "Switch Theme / 切换主题" })

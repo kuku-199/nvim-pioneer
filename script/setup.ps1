@@ -101,3 +101,4 @@ if ($RepoRoot -eq $Dest) {
 }
 
 Write-Host "🎉 Setup Complete! Restart terminal and run 'nvim'." -ForegroundColor Green
+

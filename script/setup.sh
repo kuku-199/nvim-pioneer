@@ -4,7 +4,7 @@ set -e
 # setup.sh - Environment Setup & Config Deploy
 # 1. Checks dependencies (Neovim >= 0.9, Git, etc.)
 # 2. Installs missing tools
-# 3. Deploys config to ~/.config/nvim
+# 3. SAFE DEPLOY: Checks for existing config and asks user before backing up/overwriting
 
 DEST_DIR="$HOME/.config/nvim"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -16,15 +16,11 @@ echo "🚀 Starting Nvim Pioneer Setup..."
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
 # Helper: Check Neovim version >= 0.9.0
-# Returns 0 if good, 1 if missing or old
 check_nvim_ver() {
     if ! has_cmd nvim; then return 1; fi
-    # Simple check for version string
     local ver=$(nvim --version | head -n1 | grep -oE 'v[0-9]+.[0-9]+' | tr -d 'v')
     local major=$(echo "$ver" | cut -d. -f1)
     local minor=$(echo "$ver" | cut -d. -f2)
-    
-    # Logic: Major > 0 OR (Major=0 AND Minor>=9)
     if [ "$major" -gt 0 ] || ([ "$major" -eq 0 ] && [ "$minor" -ge 9 ]); then
         return 0
     else
@@ -55,14 +51,11 @@ install_deps() {
             echo "⬇️  Installing missing: $MISSING"
             sudo pacman -Sy --noconfirm $MISSING base-devel unzip
         else
-            echo "✅ All dependencies satisfied (Neovim >= 0.9 detected)."
+            echo "✅ All dependencies satisfied."
         fi
 
     elif [ "$OS" = "ubuntu" ] || [ "$OS" = "debian" ] || [ "$OS" = "pop" ]; then
-        if ! check_nvim_ver; then 
-            echo "⚠️  Note: Apt/Debian often has old Neovim. If apt install fails to give v0.9+, use the AppImage guide."
-            MISSING="$MISSING neovim" 
-        fi
+        if ! check_nvim_ver; then MISSING="$MISSING neovim"; fi
         if ! has_cmd git; then MISSING="$MISSING git"; fi
         if ! has_cmd rg; then MISSING="$MISSING ripgrep"; fi
         if ! has_cmd npm; then MISSING="$MISSING nodejs npm"; fi
@@ -87,22 +80,52 @@ install_deps() {
 install_deps
 
 echo "---------------------------------------------------"
-echo "📂 Checking Configuration Directory..."
+echo "📂 Processing Configuration Directory..."
 
 if [ "$REPO_ROOT" = "$DEST_DIR" ]; then
     echo "✅ Scripts are running from the target directory ($DEST_DIR)."
 else
+    # 3. SAFE DEPLOY LOGIC
     if [ -d "$DEST_DIR" ]; then
-        echo "⚠️  Destination exists: $DEST_DIR"
-        echo "❌ Cannot overwrite automatically. To finish setup, please run:"
-        echo "   1. Backup: mv $DEST_DIR ${DEST_DIR}.bak"
-        echo "   2. Move:   mv $REPO_ROOT $DEST_DIR"
-    else
-        echo "🚀 Moving configuration to $DEST_DIR..."
-        mkdir -p "$(dirname "$DEST_DIR")"
-        cp -r "$REPO_ROOT" "$DEST_DIR"
-        echo "✅ Moved successfully."
+        BACKUP_NAME="nvim.bak.$(date +%Y%m%d_%H%M%S)"
+        
+        echo " "
+        echo "⚠️  WARNING: Existing configuration found at:"
+        echo "   $DEST_DIR"
+        echo "   (This prevents losing your current config)"
+        echo " "
+        echo "📋 Plan:"
+        echo "   1. Rename current config to: $DEST_DIR.$BACKUP_NAME"
+        echo "   2. Install new configuration"
+        echo " "
+        
+        # Ask for confirmation
+        read -p "❓ Do you want to proceed? [y/N] " -n 1 -r
+        echo # move to a new line
+        
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "📦 Backing up..."
+            mv "$DEST_DIR" "$DEST_DIR.$BACKUP_NAME"
+        else
+            echo "❌ Operation Cancelled. No changes made."
+            exit 1
+        fi
     fi
+
+    echo "🚀 Installing config to $DEST_DIR..."
+    mkdir -p "$(dirname "$DEST_DIR")"
+    cp -r "$REPO_ROOT" "$DEST_DIR"
+    echo "✅ Installation successful."
+fi
+
+echo " "
+echo "🧹 Cache Cleaning (Fix for 'treesitter' errors)"
+read -p "❓ Do you want to clear Neovim plugin cache? (Recommended if you have startup errors) [y/N] " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "🧹 Clearing $HOME/.local/share/nvim ..."
+    rm -rf "$HOME/.local/share/nvim"
+    echo "✅ Cache cleared."
 fi
 
 echo "🎉 Setup Complete! Run 'nvim' to start."

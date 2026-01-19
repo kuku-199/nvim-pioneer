@@ -12,8 +12,14 @@ require("config.keymaps")
 
 -- 3. Load Plugin Manager (Lazy.nvim)
 -- 加载插件管理器
+-- Now it will automatically load plugins from lua/config/plugins/
+-- 现在它会自动加载 lua/config/plugins/ 下的所有分类配置
 require("config.lazy")
 
 -- 4. Load Theme Switcher Logic
 -- 加载自定义主题切换逻辑
 require("config.theme")
+
+-- 5. Load Standard Shortcuts Logic (Ctrl+C/V/A...)
+-- 加载通用快捷键逻辑 (复制/粘贴/全选)
+require("config.shortcuts")
