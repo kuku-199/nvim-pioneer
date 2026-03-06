@@ -43,6 +43,14 @@
 | `<Space>rn` | `vim.lsp.buf.rename` | 变量重命名 |
 | `<Space>ca` | `vim.lsp.buf.code_action` | 代码快速修复 (Code Action) |
 
+### 🦀 Rust 专属快捷键 (Rustaceanvim)
+
+| 按键 (Key) | 命令 (Command) | 说明 (Description) |
+| :--- | :--- | :--- |
+| `<Space>ca` | `RustLsp('codeAction')` | Rust 代码修复 |
+| `K` | `RustLsp({'hover', 'actions'})` | Rust 悬停提示与操作 |
+| `<Space>dr` | `RustLsp('debuggables')` | 调试 Rust 目标 |
+
 ## 🐞 4. 调试 (Debugging / DAP)
 
 | 按键 (Key) | 动作 (Action) | 说明 (Description) |

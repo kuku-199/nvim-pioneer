@@ -43,6 +43,14 @@ This document lists all the shortcuts configured in **Nvim Pioneer**.
 | `<Space>rn` | `vim.lsp.buf.rename` | Rename Symbol |
 | `<Space>ca` | `vim.lsp.buf.code_action` | Code Action |
 
+### 🦀 Rust Specific (Rustaceanvim)
+
+| Key | Command | Description |
+| :--- | :--- | :--- |
+| `<Space>ca` | `RustLsp('codeAction')` | Rust Code Action |
+| `K` | `RustLsp({'hover', 'actions'})` | Rust Hover Actions |
+| `<Space>dr` | `RustLsp('debuggables')` | Debug Rust Target |
+
 ## 🐞 4. Debugging (DAP)
 
 | Key | Action | Description |
