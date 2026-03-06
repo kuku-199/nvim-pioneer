@@ -50,8 +50,7 @@ function M.enable()
     vim.keymap.set("v", "<C-c>", '"+y', opts)
 
     -- Ctrl+V: Paste / 粘贴 (任何模式)
-    vim.keymap.set("i", "<C-v>", '<C-r>+', opts)
-    vim.keymap.set("n", "<C-v>", '"+p', opts)
+    vim.keymap.set("i", "<C-v>", '<C-r>+', opts)    vim.keymap.set("n", "<C-v>", '"+p', opts)
     vim.keymap.set("c", "<C-v>", '<C-r>+', opts) -- Command line pasting / 命令行粘贴
 
     -- Ctrl+S: Save / 保存
