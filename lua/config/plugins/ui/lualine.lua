@@ -214,8 +214,7 @@ return {
                 { cpu_component, color = get_cpu_color }, 
                 { ram_component, color = get_ram_color },      
                 { encoding_component, color = { fg = colors.gray } }, -- Conditional Encoding
-                { 'filetype', icon_only = true },
-                { os_icon, color = { fg = colors.purple, gui = 'bold' } },
+                { os_icon, color = { fg = colors.purple, gui = 'bold' }, padding = { left = 1, right = 1 } },
             },
             lualine_y = {'progress'},
             lualine_z = {'location'}
