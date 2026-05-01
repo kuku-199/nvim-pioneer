@@ -1,114 +1,217 @@
-# 🚀 Nvim Pioneer
+# 🚀 Nvim Pioneer - Neovim Configuration
 
 <div align="center">
 
-![Neovim](https://img.shields.io/badge/Neovim-0.9%2B-blueviolet.svg?style=for-the-badge&logo=neovim)
+![Neovim](https://img.shields.io/badge/Neovim-0.9+-blueviolet.svg?style=for-the-badge&logo=neovim)
 ![Lua](https://img.shields.io/badge/Lua-Config-blue.svg?style=for-the-badge&logo=lua)
 ![Platform](https://img.shields.io/badge/Platform-Win%20|%20Linux%20|%20Mac-lightgrey?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/kuku-199/nvim-pioneer?style=for-the-badge)
 
-**[🇨🇳 中文文档 (Chinese Docs)](README_CN.md)**
+**[🇨🇳 中文文档](README_CN.md)** | **[🌏 English Docs](README.md)**
 
 </div>
 
 ---
 
-**Nvim Pioneer** is a modular, beginner-friendly Neovim configuration built for **performance** and **learnability**. It features zero-config LSP, persistent theme switching, and robust setup scripts.
+## 📖 Overview
 
-## ⚠️ Troubleshooting (Safe Mode)
+**Nvim Pioneer** is a **modular, high-performance, beginner-friendly** Neovim configuration designed for modern developers. Whether you're an embedded developer, full-stack engineer, or coding beginner, you'll get a powerful editing experience out of the box.
 
-If you encounter `module 'nvim-treesitter.configs' not found`:
-1. **Don't Panic.** This config uses **Safe Mode** (auto-install disabled) to prevent crash loops.
-2. Run the **setup script** again and say **YES** to "Clear Cache".
-3. Or manually run: `rm -rf ~/.local/share/nvim` (Linux/Mac) or delete `%LOCALAPPDATA%\nvim-data` (Windows).
-4. Inside Neovim, install languages manually: `:TSInstall c`, `:TSInstall lua`.
-
-## ✨ Core Features
+### ✨ Core Features
 
 | Feature | Description |
 | :--- | :--- |
-| 📦 **Modular Plugins** | Organized into UI, Editor, Coding, Embedded, and Tools. |
+| 📦 **Modular Plugins** | Organized into UI, Editor, Coding, Embedded, and Tools |
 | 🧠 **Zero-Config LSP** | Auto-installs servers for Python, Lua, C++, JS/TS, Rust, etc. |
-| 🎨 **Smart Theming** | Themes (Gruvbox/TokyoNight/etc.) are **remembered** across restarts. |
-| 🤖 **Embedded Ready** | Pre-configured for Embedded Dev (DAP, CMake, Clangd). |
-| 🪟 **Common Shortcuts** | Toggle Ctrl+C/V/Z/A shortcuts with `:ToggleShortcuts`. |
-| 🛠️ **Intelligent Installer** | **NEW:** Auto-detects deps, 120s countdown backup, preserves Git for updates. |
+| 🎨 **Smart Theming** | Themes (Gruvbox/TokyoNight/etc.) remembered across restarts |
+| 🤖 **Embedded Ready** | Pre-configured DAP, CMake, Clangd for embedded development |
+| 🪟 **Common Shortcuts** | Toggle Ctrl+C/V/A support with `:ToggleShortcuts` |
+| 🛠️ **Intelligent Installer** | **NEW:** Auto-detects deps, 120s countdown backup, Git preservation |
+| 📝 **Markdown Enhanced** | Browser preview + In-editor rendering, supports math, flowcharts |
 
 ---
 
-## 🛠️ Prerequisites
+## 🎯 Quick Start
 
-*   **Neovim** (v0.9+)
-*   **Git** & **Nerd Font**
-*   **Node.js**, **Python**, **Ripgrep**, **GCC**
+### Prerequisites
 
-### Automated Setup (One-Click)
+- **Neovim** >= 0.9
+- **Git** (version control)
+- **Node.js** (plugin dependencies)
+- **Ripgrep** (file search)
+- **Python 3** (LSP support)
 
-The new installer features:
-- 🔍 **Auto-detection** of missing dependencies (Neovim, Git, Node.js, Ripgrep, Python)
-- 📦 **Automatic installation** via apt/pacman/dnf/brew (Linux) or Winget (Windows)
-- ⏳ **120s countdown timer** for conflict resolution (default: backup old config)
-- 🔗 **Git preservation** for seamless updates via `git pull`
+### One-Click Installation (Recommended)
 
 **Linux / macOS:**
+
 ```bash
-chmod +x scripts/setup.sh
-./scripts/setup.sh
+git clone https://github.com/kuku-199/nvim-pioneer.git
+cd nvim-pioneer
+chmod +x script/setup.sh
+./script/setup.sh
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
+git clone https://github.com/kuku-199/nvim-pioneer.git
+cd nvim-pioneer
+powershell -ExecutionPolicy Bypass -File script/setup.ps1
 ```
 
-> **Note:** The installer will now **move** the entire repository to `~/.config/nvim` instead of copying, preserving the Git history and enabling automatic updates.
+> 💡 **Intelligent Installer Features:**
+> - 🔍 Auto-detects and installs missing dependencies
+> - ⏳ 120s countdown timer for conflict resolution (default: backup)
+> - 🔗 Preserves Git repository for seamless `git pull` updates
+> - 🛡️ Safe backup with timestamps, always recoverable
 
----
+### Manual Installation
 
-## 🚀 Installation
+```bash
+# 1. Clone to target location
+git clone https://github.com/kuku-199/nvim-pioneer.git ~/.config/nvim
 
-1.  **Clone this repo**:
-    ```bash
-    git clone https://github.com/kuku-199/nvim-pioneer.git
-    cd nvim-pioneer
-    ```
+# 2. Start Neovim (plugins auto-install)
+nvim
 
-2.  **Run Setup**:
-    Execute the script above. It will check your environment and ask for permission before modifying any files.
-
-3.  **Start Neovim**:
-    ```bash
-    nvim
-    ```
+# 3. Wait for plugin installation on first launch
+```
 
 ---
 
 ## 🎹 Keybindings
 
-> **Full List:** See [keybindings.md](keybindings.md) for a comprehensive table of all shortcuts.
+> **Full List:** Press `<Space>` in Neovim to see all keybindings
 
 | Key | Action | Description |
 | :--- | :--- | :--- |
-| `<Space>` | **Leader** | The master key |
-| `<Space> e` | Toggle Tree | Open file explorer |
+| `<Space>` | **Leader** | Master key for all shortcuts |
+| `<Space> e` | Toggle Tree | Open/close file explorer |
 | `<Space> ff` | Find File | Fuzzy search files |
-| `<Space> th` | Theme | Switch & Save Theme |
+| `<Space> th` | Theme | Switch & save theme |
+| `<Space> mp` | Markdown Preview | Preview in browser |
+| `<Space> mr` | Markdown Render | Render in editor |
 | `:ToggleShortcuts` | Shortcuts | Enable/Disable Ctrl+C/V/A |
 
 ---
 
-## 🔄 Updating
+## 🛠️ Updating
 
-Since v2.0, the installer preserves the Git repository, enabling seamless updates:
+Thanks to Git preservation, updating is simple:
 
 ```bash
 cd ~/.config/nvim
 git pull origin main
 ```
 
-Or run the built-in update command (coming soon):
+Or in Neovim (coming soon):
+
 ```vim
 :PioneerUpdate
 ```
 
-**Note:** If you installed with the old script (before v2.0), simply re-run the installer to migrate. Your old config will be backed up automatically.
+> **Note:** If you're using an older installer (pre-v2.0), just re-run the setup script to migrate. Your old config will be backed up automatically.
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### 1. Error: `module 'nvim-treesitter.configs' not found`
+
+**Solution:**
+
+```bash
+# Method 1: Clean plugin cache
+rm -rf ~/.local/share/nvim/lazy
+rm -rf ~/.local/state/nvim
+
+# Method 2: Reinstall plugins
+nvim --headless "+Lazy! sync" "+qa"
+```
+
+#### 2. Markdown preview won't open browser
+
+**Cause:** Missing default browser or environment variables
+
+**Solution:**
+
+```bash
+# Linux: Set default browser
+xdg-settings set default-web-browser firefox.desktop
+
+# Or manually open the preview URL (shown in command line)
+```
+
+#### 3. LSP servers won't auto-install
+
+**Solution:**
+
+```bash
+# Manually install Mason
+nvim +MasonInstall pyright +qa
+
+# Check Mason logs
+cat ~/.local/state/nvim/mason.log
+```
+
+#### 4. Slow plugin loading
+
+**Solution:**
+
+```bash
+# Clean plugin cache
+rm -rf ~/.local/share/nvim/lazy
+
+# Restart Neovim
+nvim
+```
+
+#### 5. Chinese characters garbled or display issues
+
+**Solution:**
+
+1. Install a [Nerd Font](https://www.nerdfonts.com/)
+2. Set the Nerd Font in your terminal settings
+3. Ensure system encoding is UTF-8
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
+
+### Development Setup
+
+```bash
+# 1. Clone repository
+git clone https://github.com/kuku-199/nvim-pioneer.git
+cd nvim-pioneer
+
+# 2. Install pre-commit hooks (recommended)
+pip install pre-commit
+pre-commit install
+
+# 3. Start developing
+# Modify files in lua/ directory
+# Test changes with nvim
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+**🌟 If you like this project, please give it a star!**
+
+[![Star History](https://api.star-history.com/svg?repos=kuku-199/nvim-pioneer&type=Date)](https://github.com/kuku-199/nvim-pioneer/stargazers)
+
+</div>
