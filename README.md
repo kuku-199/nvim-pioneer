@@ -25,7 +25,7 @@
 | 🧠 **Zero-Config LSP** | Auto-installs servers for Python, Lua, C++, JS/TS, Rust, etc. |
 | 🎨 **Smart Theming** | Themes (Gruvbox/TokyoNight/etc.) remembered across restarts |
 | 🤖 **Embedded Ready** | Pre-configured DAP, CMake, Clangd for embedded development |
-| 🪟 **Common Shortcuts** | Toggle Ctrl+C/V/A support with `:ToggleShortcuts` |
+| ⌨️ **Common Shortcuts** | Toggle Ctrl+C/V/A support with `:ToggleShortcuts` |
 | 🛠️ **Intelligent Installer** | **NEW:** Auto-detects deps, 120s countdown backup, Git preservation |
 | 📝 **Markdown Enhanced** | Browser preview + In-editor rendering, supports math, flowcharts |
 

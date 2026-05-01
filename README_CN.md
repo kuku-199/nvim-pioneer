@@ -25,7 +25,7 @@
 | 🧠 **零配置 LSP** | 自动安装 Python、Lua、C++、JS/TS、Rust 等语言服务器 |
 | 🎨 **智能主题** | 支持 Gruvbox、TokyoNight 等主题，重启自动记忆 |
 | 🤖 **嵌入式开发** | 预配置 DAP、CMake、Clangd，开箱即用 |
-| 🪟 **通用快捷键** | `:ToggleShortcuts` 一键切换 Ctrl+C/V/A 支持 |
+| ⌨️ **通用快捷键** | `:ToggleShortcuts` 一键切换 Ctrl+C/V/A 支持 |
 | 🛠️ **智能安装器** | **NEW:** 自动检测依赖、120 秒倒计时备份、保留 Git 更新能力 |
 | 📝 **Markdown 增强** | 内置浏览器预览 + 编辑器内渲染，支持数学公式、流程图 |
 
