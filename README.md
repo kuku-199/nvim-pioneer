@@ -6,7 +6,6 @@
 ![Lua](https://img.shields.io/badge/Lua-Config-blue.svg?style=for-the-badge&logo=lua)
 ![Platform](https://img.shields.io/badge/Platform-Win%20|%20Linux%20|%20Mac-lightgrey?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/kuku-199/nvim-pioneer?style=for-the-badge)
 
 **[🇨🇳 中文文档](README_CN.md)** | **[🌏 English Docs](README.md)**
 
@@ -210,8 +209,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
-**🌟 If you like this project, please give it a star!**
+**🌟 Like this project? Please give it a star!**
 
-[![Star History](https://api.star-history.com/svg?repos=kuku-199/nvim-pioneer&type=Date)](https://github.com/kuku-199/nvim-pioneer/stargazers)
+Made with ❤️ by [kuku-199](https://github.com/kuku-199)
 
 </div>
