@@ -82,7 +82,7 @@ nvim
 
 ## 🎹 Keybindings
 
-> **Full List:** [keybindings.md](keybindings.md) or press `<Space>` in Neovim to see all shortcuts
+> **Full Guide:** [docs/guide/keybindings.md](docs/guide/keybindings.md) - Includes Neovim basics + all shortcuts!
 
 | Key | Action | Description |
 | :--- | :--- | :--- |

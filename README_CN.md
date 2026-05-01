@@ -82,7 +82,7 @@ nvim
 
 ## 🎹 常用快捷键
 
-> **完整列表：** [keybindings_CN.md](keybindings_CN.md) 或 在 Neovim 中按 `<Space>` 查看所有快捷键
+> **完整指南：** [docs/guide/keybindings_CN.md](docs/guide/keybindings_CN.md) - 包含 Neovim 基础 + 所有快捷键！
 
 | 快捷键 | 功能 | 描述 |
 | :--- | :--- | :--- |
