@@ -30,9 +30,9 @@ If you encounter `module 'nvim-treesitter.configs' not found`:
 | 📦 **Modular Plugins** | Organized into UI, Editor, Coding, Embedded, and Tools. |
 | 🧠 **Zero-Config LSP** | Auto-installs servers for Python, Lua, C++, JS/TS, Rust, etc. |
 | 🎨 **Smart Theming** | Themes (Gruvbox/TokyoNight/etc.) are **remembered** across restarts. |
-| 🤖 **Embedded Ready** | **New:** Pre-configured for Embedded Dev (DAP, CMake, Clangd). |
-| 🪟 **Common Shortcuts** | **New:** Toggle Ctrl+C/V/Z/A shortcuts with `:ToggleShortcuts`. |
-| 🛠️ **Safe Setup** | Scripts check for existing config and **ask before overwriting**. |
+| 🤖 **Embedded Ready** | Pre-configured for Embedded Dev (DAP, CMake, Clangd). |
+| 🪟 **Common Shortcuts** | Toggle Ctrl+C/V/Z/A shortcuts with `:ToggleShortcuts`. |
+| 🛠️ **Intelligent Installer** | **NEW:** Auto-detects deps, 120s countdown backup, preserves Git for updates. |
 
 ---
 
@@ -44,6 +44,12 @@ If you encounter `module 'nvim-treesitter.configs' not found`:
 
 ### Automated Setup (One-Click)
 
+The new installer features:
+- 🔍 **Auto-detection** of missing dependencies (Neovim, Git, Node.js, Ripgrep, Python)
+- 📦 **Automatic installation** via apt/pacman/dnf/brew (Linux) or Winget (Windows)
+- ⏳ **120s countdown timer** for conflict resolution (default: backup old config)
+- 🔗 **Git preservation** for seamless updates via `git pull`
+
 **Linux / macOS:**
 ```bash
 chmod +x scripts/setup.sh
@@ -54,6 +60,8 @@ chmod +x scripts/setup.sh
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 ```
+
+> **Note:** The installer will now **move** the entire repository to `~/.config/nvim` instead of copying, preserving the Git history and enabling automatic updates.
 
 ---
 
@@ -86,3 +94,21 @@ powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 | `<Space> ff` | Find File | Fuzzy search files |
 | `<Space> th` | Theme | Switch & Save Theme |
 | `:ToggleShortcuts` | Shortcuts | Enable/Disable Ctrl+C/V/A |
+
+---
+
+## 🔄 Updating
+
+Since v2.0, the installer preserves the Git repository, enabling seamless updates:
+
+```bash
+cd ~/.config/nvim
+git pull origin main
+```
+
+Or run the built-in update command (coming soon):
+```vim
+:PioneerUpdate
+```
+
+**Note:** If you installed with the old script (before v2.0), simply re-run the installer to migrate. Your old config will be backed up automatically.
