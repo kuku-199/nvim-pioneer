@@ -1,4 +1,4 @@
-# 🚀 Nvim Pioneer - Neovim 先锋配置
+# 🚀 Nvim Pioneer - Neovim 个人配置
 
 <div align="center">
 
@@ -13,20 +13,22 @@
 
 ---
 
-## 📖 简介
+## 📖 这是什么？
 
-**Nvim Pioneer** 是一款为现代开发者打造的**模块化、高性能、易上手**的 Neovim 配置。无论你是嵌入式开发者、全栈工程师，还是编程新手，都能快速获得强大的编辑体验。
+**Nvim Pioneer** 是我的个人 Neovim 配置文件，主打高性能和易上手。包含零配置 LSP、智能主题切换和智能安装脚本。
+
+**欢迎随意取用、Fork 或只抄部分代码！**
 
 ### ✨ 核心特性
 
 | 特性 | 描述 |
 | :--- | :--- |
-| 📦 **模块化插件** | 按 UI、编辑器、编码、嵌入式、工具分类，结构清晰 |
+| 📦 **模块化插件** | 按 UI、编辑器、编码、嵌入式、工具分类 |
 | 🧠 **零配置 LSP** | 自动安装 Python、Lua、C++、JS/TS、Rust 等语言服务器 |
 | 🎨 **智能主题** | 支持 Gruvbox、TokyoNight 等主题，重启自动记忆 |
 | 🤖 **嵌入式开发** | 预配置 DAP、CMake、Clangd，开箱即用 |
 | ⌨️ **通用快捷键** | `:ToggleShortcuts` 一键切换 Ctrl+C/V/A 支持 |
-| 🛠️ **智能安装器** | **NEW:** 自动检测依赖、120 秒倒计时备份、保留 Git 更新能力 |
+| 🛠️ **智能安装器** | 自动检测依赖、120 秒倒计时备份、保留 Git 更新能力 |
 | 📝 **Markdown 增强** | 内置浏览器预览 + 编辑器内渲染，支持数学公式、流程图 |
 
 ---
@@ -36,12 +38,9 @@
 ### 前置要求
 
 - **Neovim** >= 0.9
-- **Git** (版本控制)
-- **Node.js** (插件依赖)
-- **Ripgrep** (文件搜索)
-- **Python 3** (LSP 支持)
+- **Git**, **Node.js**, **Ripgrep**, **Python 3**
 
-### 一键安装（推荐）
+### 一键安装
 
 **Linux / macOS:**
 
@@ -60,23 +59,7 @@ cd nvim-pioneer
 powershell -ExecutionPolicy Bypass -File script/setup.ps1
 ```
 
-> 💡 **智能安装器特性：**
-> - 🔍 自动检测缺失依赖并提示安装
-> - ⏳ 120 秒倒计时冲突解决（默认备份旧配置）
-> - 🔗 保留 Git 仓库，支持 `git pull` 一键更新
-> - 🛡️ 安全备份，带时间戳，随时可恢复
-
-### 手动安装
-
-```bash
-# 1. 克隆仓库到目标位置
-git clone https://github.com/kuku-199/nvim-pioneer.git ~/.config/nvim
-
-# 2. 启动 Neovim（插件会自动安装）
-nvim
-
-# 3. 首次启动会安装插件，等待完成即可
-```
+> 💡 **安装器特性：** 自动检测依赖、120 秒倒计时备份、保留 Git 以便后续更新。
 
 ---
 
@@ -98,118 +81,70 @@ nvim
 
 ## 🛠️ 更新配置
 
-由于采用了 Git 保留技术，更新变得非常简单：
+安装器会保留 Git 仓库，更新非常简单：
 
 ```bash
 cd ~/.config/nvim
 git pull origin main
 ```
 
-或者在 Neovim 中（即将推出）：
-
-```vim
-:PioneerUpdate
-```
-
-> **注意：** 如果你使用的是旧版安装脚本（v2.0 之前），重新运行安装脚本即可迁移，旧配置会自动备份。
-
 ---
 
-## 🐛 故障排除 (Troubleshooting)
+## 🐛 故障排除
 
 ### 常见问题
 
-#### 1. 启动时报 `module 'nvim-treesitter.configs' not found`
+#### 1. 报错：`module 'nvim-treesitter.configs' not found`
 
-**解决方案：**
-
-```bash
-# 方法 1: 清理插件缓存
-rm -rf ~/.local/share/nvim/lazy
-rm -rf ~/.local/state/nvim
-
-# 方法 2: 重新安装插件
-nvim --headless "+Lazy! sync" "+qa"
-```
-
-#### 2. Markdown 预览无法打开浏览器
-
-**原因：** 系统缺少默认浏览器或环境变量缺失
-
-**解决方案：**
-
-```bash
-# Linux: 设置默认浏览器
-xdg-settings set default-web-browser firefox.desktop
-
-# 或者手动打开预览 URL（会显示在命令行底部）
-```
-
-#### 3. LSP 服务器无法自动安装
-
-**解决方案：**
-
-```bash
-# 手动安装 Mason
-nvim +MasonInstall pyright +qa
-
-# 检查 Mason 日志
-cat ~/.local/state/nvim/mason.log
-```
-
-#### 4. 插件加载缓慢
-
-**解决方案：**
+**解决方法：**
 
 ```bash
 # 清理插件缓存
 rm -rf ~/.local/share/nvim/lazy
+rm -rf ~/.local/state/nvim
 
 # 重启 Neovim
 nvim
 ```
 
-#### 5. 中文乱码或显示异常
+#### 2. Markdown 预览无法打开浏览器
 
-**解决方案：**
+**原因：** 缺少默认浏览器或环境变量缺失
 
-1. 确保安装了 [Nerd Font](https://www.nerdfonts.com/)
-2. 在终端设置中选择已安装的 Nerd Font
-3. 检查系统编码是否为 UTF-8
+**解决方法：** 手动打开命令行显示的 URL，或设置默认浏览器：
+```bash
+xdg-settings set default-web-browser firefox.desktop
+```
+
+#### 3. LSP 服务器无法自动安装
+
+**解决方法：**
+```bash
+# 手动安装
+nvim +MasonInstall pyright +qa
+```
 
 ---
 
-## 🤝 贡献指南
+## 📚 文档索引
 
-欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何参与开发。
+更多详细指南请查看 [docs/](docs/README.md) 目录：
 
-### 开发环境搭建
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/kuku-199/nvim-pioneer.git
-cd nvim-pioneer
-
-# 2. 安装 pre-commit 钩子（可选但推荐）
-pip install pre-commit
-pre-commit install
-
-# 3. 开始开发
-# 修改 lua/ 目录下的配置文件
-# 运行 nvim 测试更改
-```
+- **[快捷键与基础](docs/guide/keybindings_CN.md)** - 完整快捷键参考 + Neovim 基础
+- **[安装指南](docs/README.md)** - 各平台详细安装步骤
+- **[故障排除](docs/README.md)** - 常见问题与解决方案
 
 ---
 
 ## 📄 许可证
 
-本项目采用 [MIT 许可证](LICENSE)
+MIT 许可证 - 想怎么用就怎么用。
 
 ---
 
 <div align="center">
 
-**🌟 喜欢这个项目吗？请给个 Star 支持一下！**
+**🌟 如果这个配置对你有帮助，欢迎随意使用！**
 
 Made with ❤️ by [kuku-199](https://github.com/kuku-199)
 
