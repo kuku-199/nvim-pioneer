@@ -13,7 +13,6 @@ return {
       local mason = require('mason')
       local mason_lspconfig = require('mason-lspconfig')
       local cmp_nvim_lsp = require('cmp_nvim_lsp')
-
       -- List of servers to install
       -- 需要自动安装的语言服务器列表
       local servers = {
@@ -25,13 +24,12 @@ return {
           "html",          -- HTML
           "cssls",         -- CSS
           "jsonls",        -- JSON
+          "marksman",      -- Markdown
           "rust_analyzer"  -- Rust
       }
-
       -- Capabilities for auto-completion
       -- 补全能力设置
       local capabilities = cmp_nvim_lsp.default_capabilities()
-
       -- Function running when LSP attaches to a buffer
       -- 当 LSP 连接到缓冲区时执行的函数 (设置快捷键)
       local on_attach = function(client, bufnr)
@@ -48,11 +46,9 @@ return {
           -- Find references / 查找引用
           keymap("n", "gr", vim.lsp.buf.references, opts)
       end
-
       -- Initialize Mason
       -- 初始化 Mason 包管理器
       mason.setup({ ui = { icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" } } })
-
       -- Setup Mason-LSPConfig
       -- 配置 Mason 与 LSP 的连接
       mason_lspconfig.setup({
@@ -64,6 +60,10 @@ return {
               -- Default handler for all servers
               -- 默认处理程序
               function(server_name)
+                  -- Skip rust_analyzer if it's installed, rustaceanvim handles it
+                  if server_name == "rust_analyzer" then
+                      return
+                  end
                   lspconfig[server_name].setup({
                       on_attach = on_attach,
                       capabilities = capabilities,
@@ -85,7 +85,6 @@ return {
               end,
           }
       })
-
       -- Setup Auto-completion (nvim-cmp)
       -- 配置自动补全
       local cmp = require('cmp')
@@ -106,7 +105,3 @@ return {
       })
   end
 }
-
-
-
-
