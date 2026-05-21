@@ -1,122 +1,204 @@
-# 🎹 Keybindings Cheat Sheet
+# 🎹 Keybindings Reference
 
-> **Quick Reference Guide** for Nvim Pioneer shortcuts.  
-> 💡 **Tip:** Press `<Space>` in Neovim to see an interactive list of all shortcuts.
-
-<div align="center">
-
-**[🇨🇳 中文版本](keybindings_CN.md)** | **[🌏 English](keybindings.md)**
-
-</div>
+> Full keybindings reference for Nvim configuration
+>
+> `<leader>` = Space bar. E.g. `<leader>ff` = Space then f then f.
 
 ---
 
-## 📑 Table of Contents
+## 📌 Top 10 Essentials
 
-1. [General & Windows](#-1-general--windows)
-2. [Files & Terminal](#-2-files--terminal)
-3. [Coding (LSP)](#-3-coding-lsp)
-4. [Debugging (DAP)](#-4-debugging-dap)
-5. [Standard Shortcuts Mode](#️-5-standard-shortcuts-mode)
-6. [Markdown](#-6-markdown)
-
----
-
-## 🪟 1. General & Windows
-
-| Key | Command | Description |
-| :--- | :--- | :--- |
-| `<Space>` | Leader | **Master Key** (press first) |
-| `<Space>sv` | `:vsplit` | Split Vertically (left/right) |
-| `<Space>sh` | `:split` | Split Horizontally (up/down) |
-| `<Space>h` | `<C-w>h` | Focus Left Window |
-| `<Space>j` | `<C-w>j` | Focus Down Window |
-| `<Space>k` | `<C-w>k` | Focus Up Window |
-| `<Space>l` | `<C-w>l` | Focus Right Window |
-| `<Space>nh` | `:nohl` | Clear Search Highlights |
-| `<Space>th` | `:SwitchTheme` | Toggle & Save Theme |
-| `<Space>tm` | `:ToggleMonitor` | Toggle CPU/RAM Status Bar |
-| `jj` | `<Esc>` | Exit Insert Mode (fast way) |
+| Key | Action |
+|-----|--------|
+| `<leader>ff` | Find files |
+| `<leader>fg` | Full-text search |
+| `<leader>fb` | Switch buffers |
+| `<Tab>` | Next buffer |
+| `<leader>e` | Toggle file tree |
+| `jk` | Exit insert mode |
+| `<C-s>` | Save |
+| `gd` | Go to definition |
+| `K` | Hover documentation |
+| `<leader>th` | Switch theme |
 
 ---
 
-## 📂 2. Files & Terminal
+## 🔍 Telescope (Fuzzy Finder)
 
-| Key | Command | Description |
-| :--- | :--- | :--- |
-| `<Space>e` | `:NvimTreeToggle` | Toggle File Explorer |
-| `<Space>ff` | `Telescope files` | Fuzzy Find Files |
-| `<Space>fg` | `Telescope grep` | Search Text in Files (Grep) |
-| `<Space>fb` | `Telescope buffers` | Find Open Buffers |
-| `<C-\\>` | `:ToggleTerm` | Toggle Floating Terminal |
-| `<Tab>` | BufferNext | Next Buffer/Tab |
-| `<S-Tab>` | BufferPrev | Previous Buffer/Tab |
-| `<Space>x` | `:bdelete` | Close Current Buffer |
+| Key | Action |
+|-----|--------|
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep |
+| `<leader>fb` | Find buffers |
+| `<leader>fr` | Recent files |
+| `<leader>f;` | Git files |
+| `<leader>fh` | Help tags |
+| `<leader>fw` | Search current word |
+| `<leader>fd` | Diagnostics |
+| `<leader>f.` | Resume last picker |
+| `<leader>/` | Fuzzy find in current buffer |
 
----
-
-## 🧠 3. Coding (LSP)
-
-> ⚡ **Note:** These shortcuts only work when a Language Server is active (e.g., editing `.py`, `.lua`, `.rs` files).
-
-| Key | Command | Description |
-| :--- | :--- | :--- |
-| `gd` | `vim.lsp.buf.definition` | **Go to Definition** |
-| `K` | `vim.lsp.buf.hover` | **Show Documentation / Hover** |
-| `gr` | `vim.lsp.buf.references` | Find References |
-| `<Space>rn` | `vim.lsp.buf.rename` | Rename Symbol |
-| `<Space>ca` | `vim.lsp.buf.code_action` | Code Action / Quick Fix |
-
-### 🦀 Rust Specific (Rustaceanvim)
-
-| Key | Command | Description |
-| :--- | :--- | :--- |
-| `<Space>ca` | `RustLsp('codeAction')` | Rust Code Action |
-| `K` | `RustLsp({'hover', 'actions'})` | Rust Hover Actions |
-| `<Space>dr` | `RustLsp('debuggables')` | Debug Rust Target |
+**Inside picker:**
+| Key | Action |
+|-----|--------|
+| `<C-j>` / `<C-k>` | Move selection |
+| `Enter` / `<C-l>` | Open |
+| `<C-v>` | Vertical split |
+| `<C-s>` | Horizontal split |
+| `<C-t>` | New tab |
+| `q` | Close |
 
 ---
 
-## 🐞 4. Debugging (DAP)
+## 📂 File Browsing
 
-> 🔧 **Note:** Debugging requires DAP configuration for your language.
+### neo-tree
 
-| Key | Action | Description |
-| :--- | :--- | :--- |
-| `<F5>` | Continue | Start/Continue Debugging |
-| `<F10>` | Step Over | Step Over (skip function) |
-| `<F11>` | Step Into | Step Into (enter function) |
-| `<F12>` | Step Out | Step Out (exit function) |
-| `<Space>b` | Breakpoint | Toggle Breakpoint |
+| Key | Action |
+|-----|--------|
+| `<leader>e` | Toggle file tree |
+| `<leader>E` | Reveal current file |
+
+**Inside:**
+| Key | Action |
+|-----|--------|
+| `l` / `Enter` | Open/expand |
+| `h` | Collapse |
+| `q` | Close |
+| `v` / `s` | Split open |
+| `H` | Toggle hidden |
+| `/` | Fuzzy search |
+| `P` | Preview |
+| `?` | Help |
+
+### oil
+
+| Key | Action |
+|-----|--------|
+| `<leader>o` | Open oil |
+| `-` | Parent directory |
+
+**Inside:**
+| Key | Action |
+|-----|--------|
+| `Enter` | Open |
+| `dd` / `yy` / `p` | Delete/copy/paste file |
+| `R` | Rename |
+| `g.` | Toggle hidden |
+| `gx` | Open externally |
 
 ---
 
-## 🎛️ 5. Standard Shortcuts Mode
+## 🧠 LSP
 
-> ⚙️ Toggle with command: `:ToggleShortcuts`  
-> This mode enables familiar IDE-like shortcuts.
-
-| Key | Action | Context |
-| :--- | :--- | :--- |
-| `Ctrl + C` | Copy | Visual Mode Only |
-| `Ctrl + V` | Paste | Insert/Command Mode |
-| `Ctrl + A` | Select All | All Modes |
-| `Ctrl + S` | Save File | Normal Mode |
-| `Ctrl + Z` | Undo | Normal Mode |
-
----
-
-## 📝 6. Markdown
-
-| Key | Command | Description |
-| :--- | :--- | :--- |
-| `<Space>mp` | `MarkdownPreviewToggle` | Toggle Browser Preview |
-| `<Space>mr` | `RenderMarkdown toggle` | Toggle In-Editor Rendering |
+| Key | Action |
+|-----|--------|
+| `gd` | Go to definition |
+| `gr` | Find references |
+| `gD` | Go to declaration |
+| `K` | Hover documentation |
+| `<leader>rn` | Rename |
+| `<leader>ca` | Code action |
+| `]d` / `[d` | Next/prev diagnostic |
+| `<leader>d` | Float diagnostic |
+| `<leader>th` | Toggle inlay hints |
 
 ---
 
-<div align="center">
+## ✨ Completion (blink.cmp)
 
-**💡 Pro Tip:** Use `:WhichKey` or press `<Space>` and wait to see an interactive popup of all available shortcuts!
+| Key | Action |
+|-----|--------|
+| `<C-Space>` | Trigger completion |
+| `<Tab>` | Next item |
+| `<S-Tab>` | Previous item |
+| `Enter` | Confirm |
+| `<C-b>` / `<C-f>` | Scroll docs |
 
-</div>
+---
+
+## 🌲 Treesitter
+
+### Text objects
+
+| Key | Selects |
+|-----|---------|
+| `yaf` / `daf` | Whole function |
+| `cif` / `yif` | Function inner |
+| `yac` / `dac` | Whole class |
+| `cia` / `yia` | Parameter |
+| `yab` / `dab` | Block |
+
+### Navigation
+
+| Key | Jump to |
+|-----|---------|
+| `]m` / `[m` | Next/prev function |
+| `]f` / `[f` | Next/prev call |
+| `]]` / `[[` | Next/prev class |
+
+### Incremental selection
+
+| Key | Action |
+|-----|--------|
+| `<c-space>` | Expand selection |
+| `<c-s>` | Expand to scope |
+
+---
+
+## 📑 Bufferline
+
+| Key | Action |
+|-----|--------|
+| `<Tab>` | Next buffer |
+| `<S-Tab>` | Previous buffer |
+| `<leader>x` | Close buffer |
+| `<leader>bC` | Close others |
+| `Alt+,` / `Alt+.` | Move tab left/right |
+
+---
+
+## 🪟 Windows
+
+| Key | Action |
+|-----|--------|
+| `<leader>sv` | Vertical split |
+| `<leader>sh` | Horizontal split |
+| `<leader>h/j/k/l` | Navigate windows |
+| `↑/↓/←/→` | Resize |
+
+---
+
+## 🎨 UI
+
+| Key | Action |
+|-----|--------|
+| `<leader>th` | Cycle theme |
+| `<leader>tm` | Toggle CPU/RAM monitor |
+
+---
+
+## 🐞 Debug (DAP)
+
+| Key | Action |
+|-----|--------|
+| `<F5>` | Start/continue |
+| `<F10>` | Step over |
+| `<F11>` | Step into |
+| `<F12>` | Step out |
+| `<leader>b` | Toggle breakpoint |
+
+---
+
+## 🛠️ Tools
+
+| Key | Action |
+|-----|--------|
+| `<C-\>` | Toggle terminal |
+| `<leader>cg` | CMake generate |
+| `<leader>cb` | CMake build |
+| `<leader>fm` | Format code |
+| `<leader>mp` | Markdown preview |
+| `<leader>mr` | Render markdown |
+| `<leader>ss` | Save session |
+| `<leader>sl` | Load session |
