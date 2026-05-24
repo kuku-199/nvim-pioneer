@@ -21,6 +21,7 @@ nvim --headless "+Lazy! sync" +qa
 - **nvim-dap** — 调试器（F5/F10/F11/F12）
 - **toggleterm** — 浮动终端
 - **dashboard-nvim** — 启动页
+- **csvview.nvim** — CSV/TSV 表格显示、Excel 式导航、固定表头
 - **which-key** — 快捷键提示
 
 ### 快捷键速查

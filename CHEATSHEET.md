@@ -275,7 +275,33 @@
 
 ---
 
-## 14. 🔄 配置结构（知道文件在哪）
+## 14. 📊 CSV/TSV 表格查看（csvview.nvim）
+
+打开 `.csv` / `.tsv` 文件后，用以下命令：
+
+| 命令 | 作用 |
+|------|------|
+| `:CsvViewToggle` | 开关表格视图 |
+| `:CsvViewToggle display_mode=border` | 切换到竖线表格模式 |
+| `:CsvViewToggle display_mode=highlight` | 切回高亮模式 |
+| `:CsvViewToggle header_lnum=none` | 无表头 |
+| `:CsvViewInfo` | 查看 CSV 统计（分隔符、行列数） |
+
+**csvview 启用后，Excel 式导航：**
+
+| 快捷键 | 功能 |
+|--------|------|
+| `<Tab>` | 跳到下一个字段末尾 |
+| `<S-Tab>` | 跳到上一个字段末尾 |
+| `<Enter>` | 跳到下一行同字段 |
+| `<S-Enter>` | 跳到上一行同字段 |
+| `vif` | 选中当前字段内容 |
+| `vaf` | 选中整个字段（含分隔符） |
+| `dif` | 删除字段内容 |
+
+---
+
+## 15. 🔄 配置结构（知道文件在哪）
 
 ```
 ~/.config/nvim/
@@ -308,6 +334,7 @@
 │       │   └── dap.lua       ← 调试器
 │       ├── tools/
 │       │   ├── telescope.lua ← 模糊搜索
+│       │   ├── csvview.lua   ← CSV/TSV 表格显示
 │       │   ├── terminal.lua  ← 浮动终端
 │       │   └── which-key.lua ← 快捷键提示
 │       └── ui/

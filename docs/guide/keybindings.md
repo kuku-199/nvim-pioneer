@@ -202,3 +202,25 @@
 | `<leader>mr` | Render markdown |
 | `<leader>ss` | Save session |
 | `<leader>sl` | Load session |
+
+### csvview.nvim
+
+*Only works in `.csv` / `.tsv` files.*
+
+| Command | Description |
+|---------|-------------|
+| `:CsvViewToggle` | Toggle CSV table view |
+| `:CsvViewToggle display_mode=border` | Switch to border mode |
+| `:CsvViewToggle display_mode=highlight` | Switch to highlight mode |
+| `:CsvViewInfo` | Show CSV stats (delimiter, dimensions) |
+
+**When csvview is active:**
+
+| Key | Action |
+|-----|--------|
+| `<Tab>` | Jump to next field end |
+| `<S-Tab>` | Jump to previous field end |
+| `<Enter>` | Jump to next row |
+| `<S-Enter>` | Jump to previous row |
+| `vif` | Select current field inner |
+| `vaf` | Select current field (including delimiter) |

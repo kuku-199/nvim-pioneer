@@ -21,6 +21,7 @@ nvim --headless "+Lazy! sync" +qa
 - **nvim-dap** — debugger (F5/F10/F11/F12)
 - **toggleterm** — floating terminal with `<C-\>`
 - **dashboard-nvim** — welcome screen
+- **csvview.nvim** — CSV/TSV 表格显示、Excel 式导航、固定表头
 - **which-key** — keybinding hints
 
 ### Keymaps

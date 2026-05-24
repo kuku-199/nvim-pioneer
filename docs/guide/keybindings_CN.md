@@ -250,6 +250,28 @@
 | `<leader>dr` | Rust 调试目标 |
 | `<leader>fm` | 手动格式化代码 |
 
+### csvview.nvim（CSV 表格）
+
+*仅在 `.csv` / `.tsv` 文件内生效。*
+
+| 命令 | 作用 |
+|------|------|
+| `:CsvViewToggle` | 开关表格视图 |
+| `:CsvViewToggle display_mode=border` | 切换到竖线表格模式 |
+| `:CsvViewToggle display_mode=highlight` | 切回高亮模式 |
+| `:CsvViewInfo` | 查看统计（分隔符、行列数） |
+
+**启用后可直接操作：**
+
+| 快捷键 | 功能 |
+|--------|------|
+| `<Tab>` | 跳到下一个字段末尾 |
+| `<S-Tab>` | 跳到上一个字段末尾 |
+| `<Enter>` | 跳到下一行同字段 |
+| `<S-Enter>` | 跳到上一行同字段 |
+| `vif` | 选中当前字段内容 |
+| `vaf` | 选中整个字段（含分隔符） |
+
 ---
 
 ## 💡 通用操作
