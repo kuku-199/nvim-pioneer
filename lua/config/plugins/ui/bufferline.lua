@@ -1,50 +1,66 @@
 -- lua/config/plugins/ui/bufferline.lua
--- Bufferline: Tab bar at the top showing open files (like Eclipse/VS Code)
--- 顶部的文件标签栏，类似 Eclipse/VS Code 的标签页
+-- bufferline.nvim: Enhanced tab bar with diagnostics markers, git status, animations
+-- 增强版标签栏：diagnostics 彩色标记 + 动画感 + 文件图标渐变
 
 return {
   "akinsho/bufferline.nvim",
   version = "*",
   event = "VeryLazy",
   keys = {
-    -- Cycle through buffers / 循环切换
-    { "<TAB>", ":BufferLineCycleNext<CR>", desc = "Next Buffer / 下一个文件", mode = "n" },
-    { "<S-TAB>", ":BufferLineCyclePrev<CR>", desc = "Previous Buffer / 上一个文件", mode = "n" },
-    -- Move buffer position
-    { "<M-,>", ":BufferLineMovePrev<CR>", desc = "Move Buffer Left / 左移标签" },
-    { "<M-.>", ":BufferLineMoveNext<CR>", desc = "Move Buffer Right / 右移标签" },
-    -- Pin buffer
-    { "<leader>bp", ":BufferLineTogglePin<CR>", desc = "Pin Buffer / 固定标签" },
-    -- Close other buffers
-    { "<leader>bC", ":BufferLineCloseOthers<CR>", desc = "Close Other Buffers / 关闭其他" },
+    { "<TAB>",   ":BufferLineCycleNext<CR>",  desc = "Next Buffer / 下一个文件", mode = "n" },
+    { "<S-TAB>", ":BufferLineCyclePrev<CR>",  desc = "Previous Buffer / 上一个文件", mode = "n" },
+    { "<M-,>",   ":BufferLineMovePrev<CR>",   desc = "Move Tab Left / 左移标签" },
+    { "<M-.>",   ":BufferLineMoveNext<CR>",   desc = "Move Tab Right / 右移标签" },
+    { "<leader>bp", ":BufferLineTogglePin<CR>",   desc = "Pin Buffer / 固定标签" },
+    { "<leader>bC", ":BufferLineCloseOthers<CR>", desc = "Close Others / 关闭其他" },
   },
   opts = {
     options = {
-      -- Show buffer numbers
-      numbers = "none",
-      -- Close icon
-      close_command = "bdelete! %d",
-      right_mouse_command = "bdelete! %d",
-      -- Indicator style
+      -- Display mode / 显示模式
+      numbers = "buffer_id",
+      -- Indicator style for active buffer / 活动标签指示器
       indicator = {
         icon = "▎",
         style = "icon",
       },
-      -- Buffer icons
+      -- Close/modified icons / 关闭/修改图标
       buffer_close_icon = "󰅖",
       modified_icon = "●",
       close_icon = "",
       left_trunc_marker = "",
       right_trunc_marker = "",
-      -- Show buffer name only (no path)
+      -- Separator between tabs / 标签分隔符
+      separator_style = "slant",
+      -- Show buffer name only (no full path) / 只显示文件名
       name_formatter = function(buf)
         return buf.name:match("[^/]+$")
       end,
-      -- Max name length
       max_name_length = 30,
       max_prefix_length = 30,
-      -- Don't show in these filetypes
+      -- Diagnostics display / 诊断显示
       diagnostics = "nvim_lsp",
+      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        local s = " "
+        for e, n in pairs(diagnostics_dict) do
+          local sym = e == "error" and "󰅚 "
+            or e == "warning" and "󰀪 "
+            or e == "info" and "󰋽 "
+            or e == "hint" and "󰌶 "
+          if sym then s = s .. n .. sym end
+        end
+        return s
+      end,
+      -- Color filetype icons / 文件类型图标着色
+      color_icons = true,
+      -- Always show even with 1 buffer / 单文件也显示
+      always_show = true,
+      -- Hover events (shows diagnostic on hover) / 悬停显示诊断
+      hover = {
+        enabled = true,
+        delay = 200,
+        reveal = { "close" },
+      },
+      -- Offsets for file explorers / 文件浏览器的偏移
       offsets = {
         {
           filetype = "neo-tree",
@@ -53,21 +69,18 @@ return {
           separator = true,
         },
       },
-      -- Color icons based on filetype
-      color_icons = true,
-      -- Show bufferline even with 1 buffer
-      always_show = true,
-      -- Don't show in terminal/bufferline itself
-      custom_filter = function(buf, buf_nums)
-        -- Hide special buffers
-        if vim.bo[buf].filetype == "lazy" then return false end
-        if vim.bo[buf].filetype == "neo-tree" then return false end
-        if vim.bo[buf].filetype == "oil" then return false end
-        return true
+      -- Custom buffer filter / 自定义过滤
+      custom_filter = function(buf)
+        local ft = vim.bo[buf].filetype
+        return ft ~= "lazy" and ft ~= "neo-tree" and ft ~= "oil"
       end,
-      -- Separator style between tabs
-      separator_style = "slant",   -- Options: "slant", "thick", "thin", "padded_slant"
     },
-    highlights = nil, -- Use theme default
+    -- Highlight groups for active/inactive tabs / 活动/非活动标签高亮
+    highlights = {
+      buffer_selected = {
+        bold = true,
+        italic = false,
+      },
+    },
   },
 }

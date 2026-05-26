@@ -39,3 +39,25 @@ opt.fileencoding = "utf-8"
 -- 窗口分割设置
 opt.splitright = true -- Split windows to the right / 新窗口在右侧打开
 opt.splitbelow = true -- Split windows to the bottom / 新窗口在下方打开
+
+-- ────────────────────────────────────
+-- Unified Design Language / 统一设计语言
+-- ────────────────────────────────────
+-- Floating window transparency / 浮动窗口透明度 (0=完全不透明, 100=完全透明)
+opt.winblend = 8
+-- Completion popup transparency / 补全菜单透明度
+opt.pumblend = 12
+-- Rounded borders for all floating windows / 全局浮动窗口圆角
+opt.winborder = "rounded"
+-- Sign column always visible (prevents layout shift) / 标记列始终可见
+opt.signcolumn = "yes"
+-- Command line height / 命令行高度 (给 noice 留空间)
+opt.cmdheight = 1
+-- Hide mode display (lualine already shows it) / 隐藏原生 mode 显示
+opt.showmode = false
+-- Scroll offset (keep context above/below cursor) / 滚动时保留上下文
+opt.scrolloff = 4
+-- Line wrap break at word boundaries / 按单词边界换行
+opt.linebreak = true
+-- Preview window for substitutions / 替换时预览
+opt.inccommand = "split"

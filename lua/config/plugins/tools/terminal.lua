@@ -1,16 +1,23 @@
 -- lua/config/plugins/tools/terminal.lua
+-- toggleterm.nvim: Floating terminal / 浮动终端
+
 return {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    keys = { [[<C-\>]] }, -- Lazy load on keypress
-    config = function()
-        require("toggleterm").setup({
-            size = 20,
-            open_mapping = [[<c-\>]],
-            direction = 'float',
-            float_opts = {
-                border = 'curved',
-            }
-        })
-    end
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  cmd = { "ToggleTerm" },
+  keys = {
+    { [[<C-\>]], "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal / 开关终端" },
+    { [[<C-_>]], "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal / 开关终端" }, -- same for some terminals
+  },
+  opts = {
+    size = 20,
+    open_mapping = [[<C-\>]],
+    direction = "float",
+    float_opts = {
+      border = "rounded",
+      winblend = 3,
+    },
+    -- Shell configuration / shell 配置
+    shell = vim.o.shell,
+  },
 }

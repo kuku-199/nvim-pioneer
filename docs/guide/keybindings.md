@@ -1,52 +1,59 @@
-# 🎹 Keybindings Reference
+# 🎹 Keybindings
 
-> Full keybindings reference for Nvim configuration
+> Full keybinding reference.
 >
-> `<leader>` = Space bar. E.g. `<leader>ff` = Space then f then f.
+> `<leader>` = Space. E.g. `<leader>ff` = Space, then f twice.
+> Updated: 2026-05-26 (vNext — noice/flash/trouble/spectre/incline/persisted)
 
 ---
 
-## 📌 Top 10 Essentials
-
-| Key | Action |
-|-----|--------|
-| `<leader>ff` | Find files |
-| `<leader>fg` | Full-text search |
-| `<leader>fb` | Switch buffers |
-| `<Tab>` | Next buffer |
-| `<leader>e` | Toggle file tree |
-| `jk` | Exit insert mode |
-| `<C-s>` | Save |
-| `gd` | Go to definition |
-| `K` | Hover documentation |
-| `<leader>th` | Switch theme |
-
----
-
-## 🔍 Telescope (Fuzzy Finder)
+## 📌 Most Used (Top 10)
 
 | Key | Action |
 |-----|--------|
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
-| `<leader>fb` | Find buffers |
+| `<Tab>` | Next buffer |
+| `<leader>e` | File tree |
+| `jj` | Exit insert mode |
+| `<C-s>` | Save |
+| `gd` | Go to definition |
+| `K` | Hover docs |
+| `<leader>xx` | Diagnostic panel |
+| `<leader>th` | Switch theme |
+
+---
+
+## 🔍 Telescope
+
+| Key | Action |
+|-----|--------|
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep |
+| `<leader>fb` | Buffers |
 | `<leader>fr` | Recent files |
 | `<leader>f;` | Git files |
 | `<leader>fh` | Help tags |
-| `<leader>fw` | Search current word |
+| `<leader>fw` | Search word |
 | `<leader>fd` | Diagnostics |
-| `<leader>f.` | Resume last picker |
-| `<leader>/` | Fuzzy find in current buffer |
+| `<leader>fs` | LSP symbols |
+| `<leader>fgc` | Git commits |
+| `<leader>fgb` | Git branches |
+| `<leader>f.` | Resume |
+| `<leader>/` | Fuzzy find in buffer |
 
-**Inside picker:**
-| Key | Action |
-|-----|--------|
-| `<C-j>` / `<C-k>` | Move selection |
-| `Enter` / `<C-l>` | Open |
-| `<C-v>` | Vertical split |
-| `<C-s>` | Horizontal split |
-| `<C-t>` | New tab |
-| `q` | Close |
+**Telescope mappings:** `<C-j>`/`<C-k>` navigate, `<C-l>` open, `<C-v>`/`<C-s>` split, `q` close
+
+---
+
+## ⚡ Flash Motion
+
+| Key | Modes | Action |
+|-----|:-----:|--------|
+| `s` | n/x/o | Jump to any visible char |
+| `S` | n/x/o | Treesitter node jump |
+| `r` | o | Remote operation |
+| `R` | o/x | Treesitter search & op |
 
 ---
 
@@ -56,36 +63,18 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>e` | Toggle file tree |
+| `<leader>e` | Toggle tree |
 | `<leader>E` | Reveal current file |
 
-**Inside:**
-| Key | Action |
-|-----|--------|
-| `l` / `Enter` | Open/expand |
-| `h` | Collapse |
-| `q` | Close |
-| `v` / `s` | Split open |
-| `H` | Toggle hidden |
-| `/` | Fuzzy search |
-| `P` | Preview |
-| `?` | Help |
+**In tree:** `l` open, `h` collapse, `v`/`s` split, `H` hidden files, `P` preview, `/` search
 
-### oil
+### oil.nvim
 
 | Key | Action |
 |-----|--------|
-| `<leader>o` | Open oil |
-| `-` | Parent directory |
+| `<leader>o` / `-` | Open oil / parent |
 
-**Inside:**
-| Key | Action |
-|-----|--------|
-| `Enter` | Open |
-| `dd` / `yy` / `p` | Delete/copy/paste file |
-| `R` | Rename |
-| `g.` | Toggle hidden |
-| `gx` | Open externally |
+**In oil:** Enter open, dd/yy/p delete/copy/paste, R rename, gx system open
 
 ---
 
@@ -94,14 +83,27 @@
 | Key | Action |
 |-----|--------|
 | `gd` | Go to definition |
-| `gr` | Find references |
-| `gD` | Go to declaration |
-| `K` | Hover documentation |
+| `gr` | References |
+| `gD` | Declaration |
+| `K` | Hover docs |
 | `<leader>rn` | Rename |
 | `<leader>ca` | Code action |
-| `]d` / `[d` | Next/prev diagnostic |
-| `<leader>d` | Float diagnostic |
+| `<leader>d` | Floating diagnostic |
+| `]d` / `[d` | Next/prev error |
 | `<leader>th` | Toggle inlay hints |
+
+---
+
+## 🪲 Trouble (Diagnostics Center)
+
+| Key | Action |
+|-----|--------|
+| `<leader>xx` | Buffer diagnostics (toggle) |
+| `<leader>xX` | Workspace diagnostics |
+| `<leader>cs` | Document symbols |
+| `<leader>cl` | LSP references |
+| `<leader>xL` | Location list |
+| `<leader>xQ` | Quickfix list |
 
 ---
 
@@ -109,33 +111,41 @@
 
 | Key | Action |
 |-----|--------|
-| `<C-Space>` | Trigger completion |
-| `<Tab>` | Next item |
-| `<S-Tab>` | Previous item |
-| `Enter` | Confirm |
+| `<C-Space>` | Trigger |
+| `<Tab>` / `<S-Tab>` | Next / prev |
+| Enter | Accept |
 | `<C-b>` / `<C-f>` | Scroll docs |
+| `<C-e>` | Cancel |
 
 ---
 
 ## 🌲 Treesitter
 
-### Text objects
+### Text Objects
 
 | Key | Selects |
 |-----|---------|
-| `yaf` / `daf` | Whole function |
-| `cif` / `yif` | Function inner |
-| `yac` / `dac` | Whole class |
-| `cia` / `yia` | Parameter |
-| `yab` / `dab` | Block |
+| `yaf` | Whole function |
+| `daf` | Delete function |
+| `cif` | Inside function |
+| `yac` | Whole class |
+| `cia` | Function param |
+| `yab` | Code block |
 
-### Navigation
+### Jumps
 
-| Key | Jump to |
-|-----|---------|
-| `]m` / `[m` | Next/prev function |
-| `]f` / `[f` | Next/prev call |
+| Key | To |
+|-----|-----|
+| `]m` / `[m` | Next/prev function start |
 | `]]` / `[[` | Next/prev class |
+| `]M` / `[M` | Next/prev function end |
+
+### Swap params
+
+| Key | Action |
+|-----|--------|
+| `<leader>a` | Swap with next param |
+| `<leader>A` | Swap with prev param |
 
 ### Incremental selection
 
@@ -143,6 +153,7 @@
 |-----|--------|
 | `<c-space>` | Expand selection |
 | `<c-s>` | Expand to scope |
+| `<M-space>` | Shrink |
 
 ---
 
@@ -150,11 +161,12 @@
 
 | Key | Action |
 |-----|--------|
-| `<Tab>` | Next buffer |
-| `<S-Tab>` | Previous buffer |
+| `<Tab>` / `<S-Tab>` | Next / prev buffer |
 | `<leader>x` | Close buffer |
+| `<leader>X` | Close all |
 | `<leader>bC` | Close others |
-| `Alt+,` / `Alt+.` | Move tab left/right |
+| `<leader>bp` | Pin buffer |
+| `Alt+,` / `Alt+.` | Move left/right |
 
 ---
 
@@ -162,10 +174,9 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>sv` | Vertical split |
-| `<leader>sh` | Horizontal split |
-| `<leader>h/j/k/l` | Navigate windows |
-| `↑/↓/←/→` | Resize |
+| `<leader>sv` / `<leader>sh` | Split vertical/horizontal |
+| `<leader>h` / `j` / `k` / `l` | Move to window |
+| `<leader>=` | Equalize |
 
 ---
 
@@ -173,8 +184,42 @@
 
 | Key | Action |
 |-----|--------|
-| `<leader>th` | Cycle theme |
+| `<leader>th` | Cycle theme (gruvbox/nightfox/rose-pine/dracula) |
 | `<leader>tm` | Toggle CPU/RAM monitor |
+
+**UI plugins:** noice.nvim (cmdline), dressing.nvim (select/input), incline.nvim (top bar), mini.animate (cursor/scroll), nvim-treesitter-context (sticky header)
+
+---
+
+## 🔎 Spectre (Global Search & Replace)
+
+| Key | Action |
+|-----|--------|
+| `<leader>sr` | Open spectre |
+| `<leader>sw` | Search word under cursor |
+| `<leader>sp` | Search in current file |
+
+---
+
+## 💾 Sessions (persisted.nvim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>qs` | Save session |
+| `<leader>ql` | Load session |
+| `<leader>qf` | Browse sessions |
+| `<leader>qd` | Delete session |
+
+> Auto-save on exit, auto-load on start. Scoped by git branch.
+
+---
+
+## 📝 Markdown
+
+| Key | Action |
+|-----|--------|
+| `<leader>mp` | Browser preview |
+| `<leader>mr` | In-editor render |
 
 ---
 
@@ -182,7 +227,7 @@
 
 | Key | Action |
 |-----|--------|
-| `<F5>` | Start/continue |
+| `<F5>` | Continue |
 | `<F10>` | Step over |
 | `<F11>` | Step into |
 | `<F12>` | Step out |
@@ -195,32 +240,44 @@
 | Key | Action |
 |-----|--------|
 | `<C-\>` | Toggle terminal |
-| `<leader>cg` | CMake generate |
-| `<leader>cb` | CMake build |
 | `<leader>fm` | Format code |
-| `<leader>mp` | Markdown preview |
-| `<leader>mr` | Render markdown |
-| `<leader>ss` | Save session |
-| `<leader>sl` | Load session |
+| `<leader>cg` | CMake Generate |
+| `<leader>cb` | CMake Build |
+| `<leader>dr` | Rust run/debug |
 
 ### csvview.nvim
 
-*Only works in `.csv` / `.tsv` files.*
+| Cmd | Action |
+|-----|--------|
+| `:CsvViewToggle` | Toggle table view |
+| `:CsvViewInfo` | Show stats |
 
-| Command | Description |
-|---------|-------------|
-| `:CsvViewToggle` | Toggle CSV table view |
-| `:CsvViewToggle display_mode=border` | Switch to border mode |
-| `:CsvViewToggle display_mode=highlight` | Switch to highlight mode |
-| `:CsvViewInfo` | Show CSV stats (delimiter, dimensions) |
+---
 
-**When csvview is active:**
+## 💡 General
 
 | Key | Action |
 |-----|--------|
-| `<Tab>` | Jump to next field end |
-| `<S-Tab>` | Jump to previous field end |
-| `<Enter>` | Jump to next row |
-| `<S-Enter>` | Jump to previous row |
-| `vif` | Select current field inner |
-| `vaf` | Select current field (including delimiter) |
+| `i` | Insert mode |
+| `jj` | Exit insert |
+| `<C-s>` | Save |
+| `u` / `<C-r>` | Undo/redo |
+| `dd` / `yy` | Delete/copy line |
+| `p` / `P` | Paste |
+| `<leader>nh` | Clear search highlight |
+| `<C-d>` / `<C-u>` | Half-page scroll |
+| `v` / `V` / `<C-v>` | Visual (char/line/block) |
+
+---
+
+## 🔄 Standard Shortcuts (enabled by default)
+
+| Key | Action |
+|-----|--------|
+| `<C-c>` | Copy |
+| `<C-v>` | Paste |
+| `<C-a>` | Select all |
+| `<C-z>` | Undo |
+| `<C-s>` | Save |
+
+Disable: `:ToggleShortcuts`
